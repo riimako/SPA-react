@@ -27,15 +27,20 @@
 The purpose of the challenge is to build a single page application with React,showing a list of items with
 some information in each of them, and another page showing detailed
 information of each item, based on the [Ricky & Morty API](https://rickandmortyapi.com/).
+
 There will be two main screens in the app:
+
 _Listing_:
+
 • It will show a list of items coming from the API, with some information. Title
-and image are mandatory.
-• The app will be able to order the items by (at least) the Title.
+and image are mandatory.\
+• The app will be able to order the items by (at least) the Title.\
 • The app will be able to filter the items by some of the fields. It could be a
 property from the items with any select or checkbox or a search field, or all
 of them.
+
 _Details_:
+
 • It will show detailed information about the selected element.
 
 ## :sparkles: Features
