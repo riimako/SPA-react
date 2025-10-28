@@ -3,7 +3,7 @@
 
 &#xa0;
 
-<a href="https://myapp.netlify.app">Demo</a>
+<a href="https://rick-morty-ten-sigma.vercel.app/">Demo</a>
 
 </div>
 
