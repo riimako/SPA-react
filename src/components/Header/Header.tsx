@@ -1,3 +1,4 @@
+import './header.css'
 const Header = ({ title }) => {
   return (
     <header className="app-header">

@@ -1,0 +1,19 @@
+
+.app-header {
+  background-color: white;
+  color: #333;
+  padding: 20px 40px;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  margin: 0;
+  font-size: 2em;
+  font-weight: 600;
+}
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.5em;
+  }
+}

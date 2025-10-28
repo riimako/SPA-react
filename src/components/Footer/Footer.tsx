@@ -1,6 +1,6 @@
-import React from 'react'
-import linkedin from '../assets/linkedin.png'
-import github from '../assets/github-mark.png'
+import './footer.css'
+import linkedin from '../../assets/linkedin.png'
+import github from '../../assets/github-mark.png'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="app-footer">
       <div className="footer-content">
-        <p>&copy; {currentYear} Riina Maria Korpela</p>
+        <span>&copy; {currentYear} Riina Maria Korpela</span>
         <div className="social-links">
           <a
             href="https://www.linkedin.com/in/riinamariakorpela/"
@@ -17,7 +17,7 @@ const Footer = () => {
             className="social-link"
             aria-label="Perfil de LinkedIn"
           >
-            <img className='footer-logo' src={linkedin} />
+            <img className="footer-logo" src={linkedin} />
           </a>
           <a
             href="https://github.com/riimako"
@@ -26,7 +26,7 @@ const Footer = () => {
             className="social-link"
             aria-label="Perfil de GitHub"
           >
-            <img className='footer-logo' src={github} />
+            <img className="footer-logo" src={github} />
           </a>
         </div>
       </div>
