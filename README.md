@@ -1,16 +1,12 @@
 <div align="center" id="top"> 
   <img src="./.github/app.gif" alt="The Interdimensional Portal to Rick and Morty" />
-
-&#xa0;
-
-<a href="https://rick-morty-ten-sigma.vercel.app/">Demo</a>
-
 </div>
 
 <h1 align="center">The Interdimensional Portal to Rick and Morty</h1>
 
  <h4 align="center"> 
 	🚧  Under construction...  🚧
+  <a href="https://rick-morty-ten-sigma.vercel.app/">Demo</a>
 </h4>
 
 <hr>
