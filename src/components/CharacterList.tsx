@@ -36,8 +36,7 @@ function CharacterList() {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage])
 
   return (
-    <div>
-      <h1>Infinite Loading</h1>
+    <div className="card-grid">
       {status === 'pending' ? (
         <p>Loading...</p>
       ) : status === 'error' ? (
@@ -47,18 +46,29 @@ function CharacterList() {
           {data.pages.map((page) => (
             <Fragment key={page.info.next || 'last-page'}>
               {page.results.map((character) => (
-                <p
+                <div
+                  className="card character-card"
                   style={{
-                    border: '1px solid gray',
-                    borderRadius: '5px',
-                    padding: '10rem 1rem',
                     background: `hsla(${character.id * 30}, 60%, 80%, 1)`,
                   }}
                   key={character.id}
                 >
-                  <img src={character.image}></img>
-                  {character.name}
-                </p>
+                  <div className="card-image-container">
+                    <img
+                      src={character.image}
+                      alt={character.name}
+                      className="card-image"
+                    />
+
+                    <div className="card-overlay">
+                      <p className="overlay-text">{character.gender}</p>
+                    </div>
+                  </div>
+                  <div className="card-content">
+                    <h3 className="card-title">{character.name}</h3>
+                    <p className="card-description">{character.species}</p>
+                  </div>
+                </div>
               ))}
             </Fragment>
           ))}
