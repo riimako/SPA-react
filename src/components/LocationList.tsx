@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { ApiResponse, Character } from '../types'
+import { ApiResponse, Location } from '../types'
 import { Fragment, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-function CharacterList() {
+function LocationList() {
   const { ref, inView } = useInView()
 
   const {
@@ -15,10 +15,10 @@ function CharacterList() {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ['characters'],
-    queryFn: async ({ pageParam }): Promise<ApiResponse<Character[]>> => {
+    queryKey: ['locations'],
+    queryFn: async ({ pageParam }): Promise<ApiResponse<Location[]>> => {
       const response = await fetch(
-        `https://rickandmortyapi.com/api/character?page=${pageParam}`
+        `https://rickandmortyapi.com/api/location?page=${pageParam}`
       )
       return await response.json()
     },
@@ -35,6 +35,7 @@ function CharacterList() {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage])
 
+  console.log({ data })
   return (
     <div>
       <h1>Infinite Loading</h1>
@@ -46,18 +47,17 @@ function CharacterList() {
         <>
           {data.pages.map((page) => (
             <Fragment key={page.info.next || 'last-page'}>
-              {page.results.map((character) => (
+              {page.results.map((location) => (
                 <p
                   style={{
                     border: '1px solid gray',
                     borderRadius: '5px',
                     padding: '10rem 1rem',
-                    background: `hsla(${character.id * 30}, 60%, 80%, 1)`,
+                    background: `hsla(${location.id * 30}, 60%, 80%, 1)`,
                   }}
-                  key={character.id}
+                  key={location.id}
                 >
-                  <img src={character.image}></img>
-                  {character.name}
+                  {location.name}
                 </p>
               ))}
             </Fragment>
@@ -86,4 +86,4 @@ function CharacterList() {
   )
 }
 
-export default CharacterList
+export default LocationList

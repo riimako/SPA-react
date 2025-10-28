@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import './App.css'
-import CharacterList from './components/CharacterList'
+import { Outlet } from 'react-router'
 
 function App() {
-  return <CharacterList />
+  return <Outlet />
 }
 
 export default App
