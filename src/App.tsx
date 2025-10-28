@@ -1,14 +1,17 @@
 import './App.css'
-import { Outlet } from 'react-router'
-import Footer from './components/Footer'
-import Header from './components/Header'
+import { Outlet, useLocation } from 'react-router'
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import CharacterList from './components/CharacterList'
 
 function App() {
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
   return (
     <div className="app-container">
-      <Header title={'TEST'} />
-      <main className='main-content'>
-        <Outlet />
+      <Header title="The Interdimensional Portal to Rick and Morty" />
+      <main className="main-content">
+        {isHomePage ? <CharacterList /> : <Outlet />}
       </main>
       <Footer />
     </div>
