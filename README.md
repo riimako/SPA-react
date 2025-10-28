@@ -4,8 +4,7 @@
 
 <h1 align="center">The Interdimensional Portal to Rick and Morty</h1>
 
- <h4 align="center"> 
-	🚧  Under construction...  🚧
+ <h4 align="center">
   <a href="https://rick-morty-ten-sigma.vercel.app/">Demo</a>
 </h4>
 
@@ -25,13 +24,25 @@
 
 ## :dart: About
 
-Describe your project
+The purpose of the challenge is to build a single page application with React,showing a list of items with
+some information in each of them, and another page showing detailed
+information of each item, based on the [Ricky & Morty API](https://rickandmortyapi.com/).
+There will be two main screens in the app:
+_Listing_:
+• It will show a list of items coming from the API, with some information. Title
+and image are mandatory.
+• The app will be able to order the items by (at least) the Title.
+• The app will be able to filter the items by some of the fields. It could be a
+property from the items with any select or checkbox or a search field, or all
+of them.
+_Details_:
+• It will show detailed information about the selected element.
 
 ## :sparkles: Features
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Listing of all the characters with infinite scrolling;\
+:heavy_check_mark: View character details;\
+:heavy_check_mark: Filter and order list;
 
 ## :rocket: Technologies
 

@@ -7,6 +7,9 @@ type ActiveTabContentProps = {
   episodeResults: UseQueryResult<Episode>[]
   locationResults: UseQueryResult<Location>[]
 }
+/**
+ * Child component to render content based on the active tab
+ */
 function ActiveTabContent({
   activeTab,
   episodeResults,

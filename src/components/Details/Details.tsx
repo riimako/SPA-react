@@ -16,6 +16,11 @@ function Details() {
     return <Navigate to="/" replace />
   }
 
+  /**
+   * Fetch character details based on the ID from the URL
+   *
+   * @type {UseQueryResult<Character>}
+   */
   const {
     isPending: charPending,
     isError,
@@ -30,6 +35,13 @@ function Details() {
       return await response.json()
     },
   })
+
+  /**
+   * Based on the fetched character, prepare episode and location queries
+   *
+   * @type {Array<UseQueryResult<Episode>>}
+   * @type {Array<UseQueryResult<Location>>}
+   */
   const episodeUrls = character?.episode || []
   const locationUrls = Array.from(
     new Set(
@@ -89,7 +101,7 @@ function Details() {
         }}
         className="back-to-list-button"
       >
-        &larr; Volver al Listado
+        &larr; Back to list
       </button>
       <div className="profile-container">
         <header className="profile-header">
