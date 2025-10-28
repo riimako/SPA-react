@@ -1,7 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.js'
+import App from './App'
+import { createBrowserRouter } from 'react-router'
+import { RouterProvider } from 'react-router/dom'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+])
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {
@@ -10,6 +19,6 @@ if (!rootElement) {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>
 )
