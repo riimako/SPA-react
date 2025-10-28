@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router'
+import { Navigate, useNavigate, useParams } from 'react-router'
 import './details.css'
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query'
 import { Character, Episode, Location } from '../../types'
@@ -7,6 +7,7 @@ import ActiveTabContent from './ActiveTabContent'
 
 function Details() {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('locations')
 
   const isValidId = id && !isNaN(Number(id))
@@ -21,7 +22,7 @@ function Details() {
     data: character,
     error,
   } = useQuery<Character>({
-    queryKey: ['detail'],
+    queryKey: ['detail', id],
     queryFn: async () => {
       const response = await fetch(
         `https://rickandmortyapi.com/api/character/${id}`
@@ -30,17 +31,20 @@ function Details() {
     },
   })
   const episodeUrls = character?.episode || []
-  const locationUrls = [
-    character?.origin?.url,
-    character?.location?.url,
-  ].filter((url) => url) as string[]
+  const locationUrls = Array.from(
+    new Set(
+      [character?.origin?.url, character?.location?.url].filter(
+        (url) => url
+      ) as string[]
+    )
+  )
 
   const episodeResults = useQueries<Episode[]>({
     queries: episodeUrls.map((url) => {
       const episodeId = url.split('/').pop()
 
       return {
-        queryKey: ['episode', episodeId],
+        queryKey: ['episode', episodeId, id],
         queryFn: async () => {
           const response = await fetch(url)
           if (!response.ok) {
@@ -57,7 +61,7 @@ function Details() {
     queries: locationUrls.map((url) => {
       const locationId = url.split('/').pop()
       return {
-        queryKey: ['location', locationId],
+        queryKey: ['location', locationId, id],
         queryFn: async () => {
           const response = await fetch(url)
           if (!response.ok) {
@@ -78,45 +82,55 @@ function Details() {
     return <span>Error: {error.message}</span>
   }
   return (
-    <div className="profile-container">
-      <header className="profile-header">
-        <img
-          src={character.image}
-          alt={`Profile ${character.name}`}
-          className="profile-image"
+    <div className="profile-wrapper">
+      <button
+        onClick={() => {
+          navigate('/')
+        }}
+        className="back-to-list-button"
+      >
+        &larr; Volver al Listado
+      </button>
+      <div className="profile-container">
+        <header className="profile-header">
+          <img
+            src={character.image}
+            alt={`Profile ${character.name}`}
+            className="profile-image"
+          />
+          <div className="profile-info">
+            <h1 className="profile-name">{character.name}</h1>
+            <p className="profile-title">{character.gender}</p>
+            <p className="profile-specie">{character.species}</p>
+            <p className="profile-specie">{character.status}</p>
+          </div>
+        </header>
+
+        <nav className="profile-tabs">
+          <button
+            onClick={() => setActiveTab('locations')}
+            className={
+              activeTab === 'locations' ? 'tab-button active' : 'tab-button'
+            }
+          >
+            Locations
+          </button>
+          <button
+            onClick={() => setActiveTab('episodes')}
+            className={
+              activeTab === 'episodes' ? 'tab-button active' : 'tab-button'
+            }
+          >
+            Episodes
+          </button>
+        </nav>
+
+        <ActiveTabContent
+          episodeResults={episodeResults as UseQueryResult<Episode>[]}
+          activeTab={activeTab}
+          locationResults={locationResults as UseQueryResult<Location>[]}
         />
-        <div className="profile-info">
-          <h1 className="profile-name">{character.name}</h1>
-          <p className="profile-title">{character.gender}</p>
-          <p className="profile-specie">{character.species}</p>
-          <p className="profile-specie">{character.status}</p>
-        </div>
-      </header>
-
-      <nav className="profile-tabs">
-        <button
-          onClick={() => setActiveTab('locations')}
-          className={
-            activeTab === 'locations' ? 'tab-button active' : 'tab-button'
-          }
-        >
-          Locations
-        </button>
-        <button
-          onClick={() => setActiveTab('episodes')}
-          className={
-            activeTab === 'episodes' ? 'tab-button active' : 'tab-button'
-          }
-        >
-          Episodes
-        </button>
-      </nav>
-
-      <ActiveTabContent
-        episodeResults={episodeResults as UseQueryResult<Episode>[]}
-        activeTab={activeTab}
-        locationResults={locationResults as UseQueryResult<Location>[]}
-      />
+      </div>
     </div>
   )
 }

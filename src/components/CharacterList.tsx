@@ -47,7 +47,7 @@ function CharacterList() {
           {data.pages.map((page) => (
             <Fragment key={page.info.next || 'last-page'}>
               {page.results.map((character) => (
-                <Card character={character} />
+                <Card key={character.id} character={character} />
               ))}
             </Fragment>
           ))}

@@ -1,13 +1,33 @@
+.profile-wrapper {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
 .profile-container {
   max-width: 900px;
-  margin: 40px auto;
   padding: 20px;
   background-color: #f7f9fc;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* 1. Encabezado */
+.back-to-list-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: block;
+  padding: 5px 0;
+  transition: color 0.2s;
+}
+
+.back-to-list-button:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
 .profile-header {
   display: flex;
   align-items: center;
@@ -40,55 +60,6 @@
   margin: 0;
   color: #555;
   font-size: 1em;
-}
-
-.profile-action-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.profile-action-button:hover {
-  background-color: #0056b3;
-}
-
-/* 2. Resumen y Estadísticas */
-.profile-summary {
-  padding: 20px 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.profile-bio {
-  font-style: italic;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.profile-stats {
-  display: flex;
-  gap: 40px;
-  justify-content: flex-start;
-}
-
-.stat-item {
-  text-align: center;
-}
-
-.stat-number {
-  display: block;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #007bff;
-}
-
-.stat-label {
-  font-size: 0.9em;
-  color: #777;
 }
 
 .profile-tabs {
@@ -149,16 +120,7 @@
     height: 100px;
   }
 
-  .profile-action-button {
-    width: 100%;
-  }
-
-  .profile-stats {
-    justify-content: space-around;
-    width: 100%;
-  }
-
-  .profile-container {
+  .profile-wrapper {
     margin: 0;
     padding: 0;
   }
