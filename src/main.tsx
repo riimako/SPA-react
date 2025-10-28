@@ -15,9 +15,6 @@ const router = createBrowserRouter([
     errorElement: <Navigate to="/" replace />,
     children: [
       {
-        index: true,
-      },
-      {
         path: 'details/:id',
         element: <Details />,
       },
