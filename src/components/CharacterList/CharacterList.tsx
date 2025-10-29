@@ -1,11 +1,17 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { ApiResponse, Character } from '../types'
+import { ApiResponse, Character } from '../../types'
 import { Fragment, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import Card from './Card/Card'
+import Card from '../Card/Card'
+import './characterList.css'
 
-function CharacterList() {
+type CharacterListProps = {
+  sortBy: string
+}
+
+function CharacterList({ sortBy }: CharacterListProps) {
   const { ref, inView } = useInView()
+  console.log('CharacterList render with sortBy:', sortBy)
 
   const {
     status,
@@ -46,9 +52,21 @@ function CharacterList() {
         <>
           {data.pages.map((page) => (
             <Fragment key={page.info.next || 'last-page'}>
-              {page.results.map((character) => (
-                <Card key={character.id} character={character} />
-              ))}
+              {page.results
+                .sort((a, b) => {
+                  if (sortBy === 'name-asc') {
+                    return a.name.localeCompare(b.name)
+                  } else if (sortBy === 'name-desc') {
+                    return a.name.localeCompare(b.name) * -1
+                  } else {
+                    if (a.id < b.id) return -1
+                    if (a.id > b.id) return 1
+                    return 0
+                  }
+                })
+                .map((character) => (
+                  <Card key={character.id} character={character} />
+                ))}
             </Fragment>
           ))}
           <div>

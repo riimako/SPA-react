@@ -36,12 +36,6 @@ body,
   margin: 0 auto;
   width: 100%;
 }
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px 0;
-}
 
 @media (max-width: 768px) {
   .main-content {
