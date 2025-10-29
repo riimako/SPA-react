@@ -1,101 +1,65 @@
-.card {
-  background-color: white;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-.card:hover {
-  transform: translateY(-5px);
-}
-.card-image-container {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-}
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s ease-in-out;
+/* 1. Estilo del Contenedor de Enlace */
+.user-card-link {
+  text-decoration: none; /* Elimina el subrayado por defecto del enlace */
+  color: inherit; /* Hereda el color del texto */
 }
 
-.card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
+
+.user-card {
+  display: flex; 
   align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
-}
-
-.card-image-container:hover .card-overlay {
-  opacity: 1;
-}
-
-.card-image-container:hover .card-image {
-  transform: scale(1.05);
-}
-
-.overlay-text {
-  color: white;
-  font-size: 1.5em;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  transform: translateY(20px);
+  gap: 15px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
   transition:
     transform 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
-  opacity: 0;
+    box-shadow 0.3s ease-in-out;
+  border: 1px solid transparent;
+  height: 100%;
 }
 
-.card-image-container:hover .overlay-text {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0.1s;
+.user-card:hover {
+  transform: translateY(-5px); /* Se levanta un poco */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más fuerte */
+  border-color: #007bff; /* Borde de color para destacar */
 }
 
-.card-content {
-  padding: 15px;
+.card-avatar-container {
+  flex-shrink: 0; /* Evita que la imagen se encoja */
 }
 
-.card-title {
-  font-size: 1.3em;
-  margin-bottom: 8px;
+.card-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #007bff; /* Borde sutil del color primario */
+}
+
+/* 4. Estilo de la Información */
+.card-info {
+  flex-grow: 1; /* Permite que la información ocupe el espacio restante */
+}
+
+.card-name {
+  margin: 0;
+  font-size: 1.2em;
   color: #333;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.card-description {
+.card-title-sm {
+  margin: 3px 0;
   font-size: 0.9em;
-  color: #666;
-  line-height: 1.5;
+  color: #007bff; /* Título secundario en color primario */
+  font-weight: 500;
 }
 
-.character-card {
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 10rem 1rem;
-}
-
-@media (max-width: 768px) {
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
+.card-location-sm {
+  margin: 0;
+  font-size: 0.85em;
+  color: #777;
 }

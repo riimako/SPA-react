@@ -1,34 +1,25 @@
-import { useNavigate } from 'react-router'
-import { Character } from '../../types'
+import { Link } from 'react-router'
 import './card.css'
+import { Character } from '../../types'
 
-function Card({ character }: { character: Character }) {
-  const navigate = useNavigate()
+const Card = ({ character }: { character: Character }) => {
+  const detailPath = `/details/${character.id}`
+
   return (
-    <div
-      className="card character-card"
-      style={{
-        background: `hsla(${character.id * 30}, 60%, 80%, 1)`,
-      }}
-      onClick={() => navigate(`/details/${character.id}`)}
-      key={character.id}
-    >
-      <div className="card-image-container">
-        <img
-          src={character.image}
-          alt={character.name}
-          className="card-image"
-        />
-
-        <div className="card-overlay">
-          <p className="overlay-text">{character.gender}</p>
+    <Link to={detailPath} className="user-card-link">
+      <div className="user-card">
+        <div className="card-avatar-container">
+          <img
+            src={character.image}
+            alt={`Photo ${character.name}`}
+            className="card-avatar"
+          />
+        </div>
+        <div className="card-info">
+          <h3 className="card-name">{character.name}</h3>
         </div>
       </div>
-      <div className="card-content">
-        <h3 className="card-title">{character.name}</h3>
-        <p className="card-description">{character.species}</p>
-      </div>
-    </div>
+    </Link>
   )
 }
 
