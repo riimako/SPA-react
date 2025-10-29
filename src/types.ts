@@ -47,3 +47,10 @@ export interface ApiResponse<T> {
   }
   results: T
 }
+
+export interface FiltersType {
+  name: string
+  status: string
+  species: string
+  gender: string
+}
