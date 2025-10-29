@@ -49,6 +49,10 @@ _Details_:
 :heavy_check_mark: View character details;\
 :heavy_check_mark: Filter and order list;
 
+## :fire: Known bugs
+
+:heavy_exclamation_mark: Sort only orders by actual page (API doesn't contemplate sorting)\
+
 ## :rocket: Technologies
 
 The following tools were used in this project:
