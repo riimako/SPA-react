@@ -112,9 +112,9 @@ function Details() {
           />
           <div className="profile-info">
             <h1 className="profile-name">{character.name}</h1>
-            <p className="profile-title">{character.gender}</p>
-            <p className="profile-specie">{character.species}</p>
-            <p className="profile-specie">{character.status}</p>
+            <p className="profile-title">- {character.gender}</p>
+            <p className="profile-specie">- {character.species}</p>
+            <p className="profile-specie">- {character.status}</p>
           </div>
         </header>
 

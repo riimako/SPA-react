@@ -29,7 +29,7 @@ function ActiveTabContent({
                 return (
                   <p key={locationData.id}>
                     <b>{`${index === 0 ? 'Origin - ' : 'Actual - '}`}</b>
-                    {`${locationData.name} located in ${locationData.dimension}`}
+                    {`${locationData.name} located in ${locationData.dimension}.`}
                   </p>
                 )
               })
