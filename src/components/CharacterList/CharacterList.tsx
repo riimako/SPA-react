@@ -1,17 +1,15 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { ApiResponse, Character } from '../../types'
-import { Fragment, useEffect } from 'react'
+import { ApiResponse, Character, FiltersType } from '../../types'
+import { Fragment, useContext, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import Card from '../Card/Card'
 import './characterList.css'
+import { FiltersContext } from '../HomePage/HomePage'
+import { objectToQueryString } from './query-string'
 
-type CharacterListProps = {
-  sortBy: string
-}
-
-function CharacterList({ sortBy }: CharacterListProps) {
+function CharacterList() {
   const { ref, inView } = useInView()
-  console.log('CharacterList render with sortBy:', sortBy)
+  const { filters, sortBy } = useContext(FiltersContext)
 
   const {
     status,
@@ -22,12 +20,20 @@ function CharacterList({ sortBy }: CharacterListProps) {
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ['characters'],
+    queryKey: ['characters', filters],
     queryFn: async ({ pageParam }): Promise<ApiResponse<Character[]>> => {
       const response = await fetch(
-        `https://rickandmortyapi.com/api/character?page=${pageParam}`
+        `https://rickandmortyapi.com/api/character?page=${pageParam}&${objectToQueryString(filters)}`
       )
-      return await response.json()
+      if (response.status === 404) {
+        // API returned 404 Not Found when no items match the filters
+        return {
+          info: { next: '', prev: '', pages: 0, count: 0 },
+          results: [],
+        }
+      }
+
+      return response.json()
     },
     initialPageParam: 0,
     getNextPageParam: (data) =>
@@ -42,12 +48,15 @@ function CharacterList({ sortBy }: CharacterListProps) {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage])
 
+  
   return (
     <div className="card-grid">
       {status === 'pending' ? (
         <p>Loading...</p>
       ) : status === 'error' ? (
-        <span>Error: {error.message}</span>
+        <p>Error: {error.message}</p>
+      ) : data?.pages[0].results.length === 0 ? (
+        <p>No characters found matching the filters.</p>
       ) : (
         <>
           {data.pages.map((page) => (
