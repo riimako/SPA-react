@@ -20,6 +20,9 @@ body,
 *::after {
   box-sizing: inherit;
 }
+.d-flex{
+  display: flex;
+}
 
 .app-container {
   display: flex;

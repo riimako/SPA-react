@@ -22,3 +22,14 @@ export const objectToQueryString = (filters: FiltersType) => {
   })
   return queryParts.join('&')
 }
+
+
+/**
+ * Verify if at least one filter is active (not empty).
+ *
+ * @param {FiltersType} filters
+ * @returns {boolean} true if at least one filter is active, false otherwise.
+ */
+export const areFiltersActive = (filters: FiltersType): boolean => {
+  return Object.values(filters).some(value => value !== '');
+};
